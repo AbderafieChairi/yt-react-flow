@@ -26,7 +26,7 @@ function Scene() {
         </Canvas>
     )
 }
-data = {
+const data = {
     id:'1',
     position:{
         x:0,

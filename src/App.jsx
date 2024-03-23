@@ -7,13 +7,18 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { useFlowContext } from './context/FlowContext';
 import { Output } from './components/Output';
-
+import PositionNode from "./components/Position";
+import RotationNode from "./components/Rotation";
+import ScaleNode from "./components/Scale";
 
 
 
 
 const nodeTypes={
   Output:Output,
+  Position: PositionNode,
+  Rotation: RotationNode,
+  Scale: ScaleNode
 
 }
 
