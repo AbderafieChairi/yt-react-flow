@@ -32,33 +32,9 @@ export function FlowProvider ({ children }) {
     const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
 
-    useEffect(()=>{
-        const node = nodes.find(i=>i.type=="Output")
-        const data ={...node.data,...{
-            
-        }}
-
-        udpdateNodeData(node.id,node.data)
-    },[edges])
-
-    const udpdateNodeData=(id,data)=>{
-        setNodes(nodes.map(i=>{
-            if(i.id==id){
-                return {
-                    ...i,
-                    data
-                }
-            }else{
-                return i
-            }
-        }))
-    }
-
-
     const values = {
         nodes,
         edges,
-
         onNodesChange,
         onEdgesChange,
         onConnect

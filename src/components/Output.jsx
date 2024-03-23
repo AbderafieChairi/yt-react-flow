@@ -4,7 +4,7 @@ import { Handle, Position } from 'reactflow'
 
 function Box(props) {
   const ref = useRef()
-  useFrame((state, delta) => (ref.current.rotation.x += delta))
+//   useFrame((state, delta) => (ref.current.rotation.x += delta))
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
@@ -17,33 +17,18 @@ function Box(props) {
   )
 }
 
+
+
 function Scene() {
     return (
         <Canvas>
         <ambientLight />
             <pointLight position={[3, 3, 3]} />
-            <Box position={[0, 0, 0]} scale={[3, 3, 3]} />
+            <Box position={[0, 0, 0]} rotation={[0, 0, 0]} scale={[3, 3, 3]} />
         </Canvas>
     )
 }
-const data = {
-    id:'1',
-    position:{
-        x:0,
-        y:0,
-        z:0
-    },
-    rotation:{
-        x:0,
-        y:0,
-        z:0
-    },
-    scale:{
-        x:1,
-        y:1,
-        z:1
-    }
-}
+
 
 
 
