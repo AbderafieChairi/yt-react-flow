@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Handle, Position } from 'reactflow'
 
@@ -19,12 +19,12 @@ function Box(props) {
 
 
 
-function Scene() {
+function Scene(props) {
     return (
-        <Canvas>
+        <Canvas className='h-[1000px] w-[1000px]'>
         <ambientLight />
             <pointLight position={[3, 3, 3]} />
-            <Box position={[0, 0, 0]} rotation={[0, 0, 0]} scale={[3, 3, 3]} />
+            <Box position={props.p} rotation={props.r} scale={props.s} />
         </Canvas>
     )
 }
@@ -34,8 +34,18 @@ function Scene() {
 
 
 export function Output({data}) {
+
+    const p = useMemo(() => data.p ? [parseInt(data.p.x), parseInt(data.p.y), parseInt(data.p.z)] : [0, 0, 0], [data])
+    const r = useMemo(() => data.r ? [parseInt(data.r.x)/57.5, parseInt(data.r.y)/57.5, parseInt(data.r.z)/57.5] : [0, 0, 0], [data])
+    const s = useMemo(() => data.s ? [parseInt(data.s.x), parseInt(data.s.y), parseInt(data.s.z)] : [1,1,1], [data])
+    useEffect(() => {
+        console.log(
+            data
+        )
+        console.log( [r, s, p])
+    }, [r, s, p])
     return (
-        <div className='h-80 w-70 rounded-md bg-back overflow-hidden border border-solid border-back'>
+        <div className='h-[600px] w-[600px] rounded-md bg-back overflow-hidden border border-solid border-back flex flex-col items-stretch'>
         <Handle type="target" position={Position.Left} id="p" style={{top:60}}>
             <div className='text-white relative left-3 bottom-3'>p</div>
         </Handle>
@@ -48,8 +58,8 @@ export function Output({data}) {
             <div className="p-2 bg-orange-500 z-10  text-white">
                 Output
             </div>
-            <div>
-                <Scene />
+            <div className='flex-1'>
+                <Scene p={p} r={r} s={s}/>
             </div>
         </div>
     )

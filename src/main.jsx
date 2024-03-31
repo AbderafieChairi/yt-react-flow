@@ -5,9 +5,7 @@ import './index.css'
 import { FlowProvider } from './context/FlowContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <FlowProvider>
       <App />
     </FlowProvider>
-  </React.StrictMode>,
 )
